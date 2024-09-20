@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eoghan Hogan | Landing Page</title>
+    <meta name="description" content="Brief description about you and your projects.">
+    <meta name="keywords" content="Your Name, Portfolio, Projects, Contact, CV">
+    <meta name="author" content="Your Name">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Your Name",
+      "url": "https://yourusername.github.io",
+      "sameAs": [
+        "https://github.com/yourusername",
+        "https://linkedin.com/in/yourusername",
+        "https://twitter.com/yourusername"
+      ],
+      "jobTitle": "Your Job Title",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Your Company"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <canvas id="background-animation"></canvas>
+        <div class="hero-content">
+            <h1>Your Name</h1>
+            <p>Your Tagline Here</p>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>Brief intro paragraph about who you are...</p>
+                <ul>
+                    <li>Skill 1</li>
+                    <li>Skill 2</li>
+                    <li>Passion 1</li>
+                    <li>Passion 2</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Current Projects</h2>
+            <div class="project-grid">
+                <!-- Project Card -->
+                <div class="project-card">
+                    <h3>Project Title 1</h3>
+                    <p>Brief description of the project.</p>
+                    <a href="project1.html" class="btn">Learn More</a>
+                </div>
+                <!-- Repeat Project Cards as needed -->
+                <div class="project-card">
+                    <h3>Project Title 2</h3>
+                    <p>Brief description of the project.</p>
+                    <a href="project2.html" class="btn">Learn More</a>
+                </div>
+                <!-- Add more project cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact-cta">
+        <h2>Get In Touch</h2>
+        <a href="contact.html" class="btn">Contact Me</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/yourusername"><img src="icons/github.svg" alt="GitHub"></a>
+            <a href="https://linkedin.com/in/yourusername"><img src="icons/linkedin.svg" alt="LinkedIn"></a>
+            <!-- Add more social icons as needed -->
+        </div>
+        <p>&copy; 2023 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

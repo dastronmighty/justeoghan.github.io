@@ -1,0 +1,233 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Helvetica', sans-serif;
+    color: #fff;
+    background-color: #121212;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #1a1a1a;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #00adb5;
+}
+
+/* Hero Section */
+#hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* About Me Section */
+#about {
+    padding: 60px 0;
+    background-color: #181818;
+}
+
+#about .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-text {
+    max-width: 800px;
+    text-align: center;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.about-text ul {
+    margin-top: 20px;
+}
+
+.about-text li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Projects Section */
+#projects {
+    padding: 60px 0;
+    background-color: #1f1f1f;
+}
+
+#projects h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.project-card {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px;
+    width: 300px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    background-color: #333;
+}
+
+.project-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.project-card .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #00adb5;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.project-card .btn:hover {
+    background-color: #00969e;
+}
+
+/* Call to Action Section */
+#contact-cta {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #181818;
+}
+
+#contact-cta h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#contact-cta .btn {
+    padding: 15px 30px;
+    background-color: #00adb5;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#contact-cta .btn:hover {
+    background-color: #00969e;
+}
+
+/* Footer */
+footer {
+    padding: 20px 0;
+    background-color: #121212;
+    text-align: center;
+}
+
+.social-links a {
+    margin: 0 10px;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+}
+
+footer p {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .about-text {
+        padding: 0 20px;
+    }
+}
