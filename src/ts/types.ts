@@ -16,6 +16,7 @@ export interface Particle {
         x: number;
         y: number;
     };
+    remove?: boolean;
 }
 
 export type CreateParticle = (x: number, y: number, size: number, color: string) => Particle;

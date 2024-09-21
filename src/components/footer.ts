@@ -6,11 +6,8 @@ export const Footer = () => `
         <a href="https://github.com/dastronmighty" aria-label="GitHub">
           <img src="icons/github-mark-white.svg" alt="GitHub" />
         </a>
-        <a href="https://linkedin.com/in/yourusername" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/eoghanhogan99/" aria-label="LinkedIn">
           <img src="icons/linkedin.svg" alt="LinkedIn" />
-        </a>
-        <a href="https://instagram.com/yourusername" aria-label="Instagram">
-          <img src="icons/instagram.svg" alt="Instagram" />
         </a>
       </div>
       <p>&copy; ${new Date().getFullYear()} Eoghan Hogan. All rights reserved.</p>

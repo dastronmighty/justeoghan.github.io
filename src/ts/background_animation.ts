@@ -1,122 +1,45 @@
-import { Mouse, Particle, CreateParticle, UpdateParticle, DrawParticle } from './types';
+import { createParticle } from './particle/createParticle';
+import { updateParticle } from './particle/updateParticle';
+import { drawParticle } from './particle/drawParticle';
+import { Particle, Mouse } from './types';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.querySelector('#backgroundanimation') as HTMLCanvasElement;
+    const canvas = document.getElementById('backgroundanimation') as HTMLCanvasElement;
 
+    // Check if canvas is present in the DOM
     if (!canvas) {
         console.error('Canvas element not found');
         return;
     }
 
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-
+    // Get the 2D drawing context
+    const ctx = canvas.getContext('2d');
     if (!ctx) {
         console.error('2D context not available on canvas');
         return;
     }
 
+    // Particle array and mouse object
     let particlesArray: Particle[] = [];
-    const mouse: Mouse = {
-        x: undefined,
-        y: undefined,
-        radius: 100, // Larger radius to create a bigger effect area
-    };
+    const mouse: Mouse = { x: undefined, y: undefined, radius: 150 };
 
+    // Maximum number of particles allowed
+    const maxParticles = 50;
+
+    // Set canvas dimensions
     function setCanvasDimensions() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
 
-    setCanvasDimensions();
-
-    canvas.addEventListener('mousemove', (event: MouseEvent) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = event.clientX - rect.left;
-        mouse.y = event.clientY - rect.top;
-    });
-
-    canvas.addEventListener('mouseout', () => {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    });
-
-    const createParticle: CreateParticle = (x, y, size, color) => ({
-        x,
-        y,
-        size,
-        color,
-        baseX: x,
-        baseY: y,
-        density: (Math.random() * 30) + 1,
-        speed: {
-            x: Math.random() * 0.2 - 0.1,
-            y: Math.random() * 0.2 - 0.1,
-        },
-    });
-
-    const updateParticle: UpdateParticle = (particle, mouse, canvasWidth, canvasHeight) => {
-        // Undulating movement for base animation
-        particle.x += Math.sin(particle.density) * 0.5; // Undulating wave motion
-        particle.y += Math.cos(particle.density) * 0.5;
-
-        // Reverse direction if particle goes off the canvas
-        if (particle.x > canvasWidth || particle.x < 0) {
-            particle.speed.x *= -1;
-        }
-        if (particle.y > canvasHeight || particle.y < 0) {
-            particle.speed.y *= -1;
-        }
-
-        // If mouse is interacting, apply force, otherwise return to base smoothly
-        if (mouse.x !== undefined && mouse.y !== undefined) {
-            const dx = mouse.x - particle.x;
-            const dy = mouse.y - particle.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < mouse.radius) {
-                const forceDirectionX = dx / distance;
-                const forceDirectionY = dy / distance;
-                const force = (mouse.radius - distance) / mouse.radius;
-                const directionX = forceDirectionX * force * particle.density * 0.6;
-                const directionY = forceDirectionY * force * particle.density * 0.6;
-
-                particle.x += directionX;
-                particle.y += directionY;
-            }
-        }
-
-        // Always gradually return to base position if not affected by the mouse
-        if (particle.x !== particle.baseX) {
-            const dx = particle.x - particle.baseX;
-            particle.x -= dx / 20; // Smoothly move towards baseX
-        }
-        if (particle.y !== particle.baseY) {
-            const dy = particle.y - particle.baseY;
-            particle.y -= dy / 20; // Smoothly move towards baseY
-        }
-
-        return particle;
-    };
-
-
-    const drawParticle: DrawParticle = (ctx, particle) => {
-        ctx.fillStyle = particle.color;
-        ctx.beginPath();
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = particle.color;
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-    };
-
-    function init() {
+    // Initialize the particles
+    function initParticles() {
         particlesArray = [];
         const numberOfParticles = 50;
-
         const neonColors = ['#f200ff', '#9d00ff', '#00ff15', '#4afff9', '#cc00ff', '#e100ff'];
 
         for (let i = 0; i < numberOfParticles; i++) {
-            const size = (Math.random() * 5) + 2;
+            const size = Math.random() * 5 + 2;
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height;
             const color = neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -124,72 +47,83 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function connect(mouseParticle: Particle | null) {
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                const distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) +
-                    ((particlesArray[a].y - particlesArray[b].y) ** 2);
+    // Connect particles with lines based on proximity
+    function connectParticles() {
+        particlesArray.forEach((particleA, a) => {
+            particlesArray.forEach((particleB, b) => {
+                if (b <= a) return; // Skip already checked particles
+                const distance = (particleA.x - particleB.x) ** 2 + (particleA.y - particleB.y) ** 2;
                 if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    ctx.strokeStyle = `rgba(242, 255, 255, 1)`;
+                    ctx.strokeStyle = 'rgba(242, 255, 255, 0.5)';
                     ctx.lineWidth = 1;
                     ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                    ctx.moveTo(particleA.x, particleA.y);
+                    ctx.lineTo(particleB.x, particleB.y);
                     ctx.stroke();
                 }
-            }
-        }
-
-        // If mouse is active, connect nearby particles to it
-        if (mouseParticle && mouse.x !== undefined && mouse.y !== undefined) {
-            for (let i = 0; i < particlesArray.length; i++) {
-                const distance = ((particlesArray[i].x - mouse.x) ** 2) + ((particlesArray[i].y - mouse.y) ** 2);
-                if (distance < mouse.radius ** 2) {
-                    ctx.strokeStyle = `rgba(255, 255, 255, 0.7)`;
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                    ctx.lineTo(mouseParticle.x, mouseParticle.y);
-                    ctx.stroke();
-                }
-            }
-        }
+            });
+        });
     }
 
+    // Animate the particles (main animation loop)
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas before drawing
 
-        // Create a large "attractor" particle at mouse location
-        let mouseParticle: Particle | null = null;
-        if (mouse.x !== undefined && mouse.y !== undefined) {
-            mouseParticle = {
-                x: mouse.x,
-                y: mouse.y,
-                size: 10, // Large attractor particle
-                color: '#ffffff',
-                baseX: mouse.x,
-                baseY: mouse.y,
-                density: 1,
-                speed: { x: 0, y: 0 }
-            };
-            drawParticle(ctx, mouseParticle);
-        }
+        // Update and draw particles, and remove those moving towards the mouse
+        particlesArray = particlesArray.filter(particle => {
+            updateParticle(particle, mouse, canvas.width, canvas.height); // Update particle
+            drawParticle(ctx, particle); // Draw particle on the canvas
 
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i] = updateParticle(particlesArray[i], mouse, canvas.width, canvas.height);
-            drawParticle(ctx, particlesArray[i]);
-        }
+            // Return only particles not marked for removal
+            return !particle.remove;
+        });
 
-        // Connect particles and mouse attractor
-        connect(mouseParticle);
+        connectParticles(); // Connect particles with lines if necessary
+
+        // Call animate recursively for the next frame
         requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', () => {
-        setCanvasDimensions();
-        init();
+    // Event listener for mouse movement to track mouse position
+    canvas.addEventListener('mousemove', event => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
     });
 
-    init();
-    animate();
+    // Event listener for mouse out (to stop interaction when mouse leaves canvas)
+    canvas.addEventListener('mouseout', () => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    });
+
+    // Event listener for adding particles on click
+    canvas.addEventListener('click', event => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const neonColors = ['#f200ff', '#9d00ff', '#00ff15', '#4afff9', '#cc00ff', '#e100ff'];
+        const size = Math.random() * 5 + 2;
+        const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+
+        // Add a new particle
+        particlesArray.push(createParticle(x, y, size, color));
+
+        // If we have more than maxParticles, remove the oldest particle
+        if (particlesArray.length > maxParticles) {
+            particlesArray.shift(); // Remove the first particle in the array
+        }
+    });
+
+    // Handle window resizing
+    window.addEventListener('resize', () => {
+        setCanvasDimensions();
+        initParticles(); // Re-initialize particles when the window size changes
+    });
+
+    // Set up canvas dimensions, initialize particles, and start the animation loop
+    setCanvasDimensions();
+    initParticles();
+    animate(); // Start the animation loop
 });
