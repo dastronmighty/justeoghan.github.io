@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mouse: Mouse = { x: undefined, y: undefined, radius: 150 };
 
     // Maximum number of particles allowed
-    const maxParticles = 50;
+    const maxParticles = 100;
 
     // Set canvas dimensions
     function setCanvasDimensions() {
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the particles
     function initParticles() {
         particlesArray = [];
-        const numberOfParticles = 50;
+        const numberOfParticles = 80;
         const neonColors = ['#f200ff', '#9d00ff', '#00ff15', '#4afff9', '#cc00ff', '#e100ff'];
 
         for (let i = 0; i < numberOfParticles; i++) {
-            const size = Math.random() * 5 + 2;
+            const size = Math.random() * 5 + 5;
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height;
             const color = neonColors[Math.floor(Math.random() * neonColors.length)];
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const y = event.clientY - rect.top;
 
         const neonColors = ['#f200ff', '#9d00ff', '#00ff15', '#4afff9', '#cc00ff', '#e100ff'];
-        const size = Math.random() * 5 + 2;
+        const size = Math.random() * 5 + 5;
         const color = neonColors[Math.floor(Math.random() * neonColors.length)];
 
         // Add a new particle
