@@ -69,7 +69,9 @@ module.exports = {
     minimize: true, // Minify the output files
     minimizer: [
       new TerserPlugin(), // Minify JavaScript
-      new CssMinimizerPlugin(), // Minify CSS
+      new CssMinimizerPlugin({
+        parallel: false, // Disable parallel processing
+      }), // Minify CSS
     ],
     splitChunks: {
       chunks: 'all', // Split chunks for optimization
