@@ -3,11 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Change this to your default branch
+      - main  # Replace 'main' with your branch if different
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Allow actions to push to the repo
 
     steps:
       - name: Checkout code
