@@ -6,7 +6,7 @@ let particlesArray = [];
 const mouse = {
     x: undefined,
     y: undefined,
-    radius: 150
+    radius: 50
 };
 
 // Set canvas dimensions
@@ -34,15 +34,15 @@ class Particle {
         this.baseY = y;
         this.density = (Math.random() * 30) + 1;
         this.speed = {
-            x: Math.random() * 0.4 - 0.1,
-            y: Math.random() * 0.4 - 0.1
+            x: Math.random() * 1 - 0.1,
+            y: Math.random() * 1 - 0.1
         };
     }
 
     draw() {
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.shadowBlur = 5;
+        ctx.shadowBlur = 20;
         ctx.shadowColor = this.color;
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
