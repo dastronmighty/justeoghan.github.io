@@ -1,0 +1,14 @@
+@use "sass:color";
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: $primary-color;
+    color: $text-color;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: color.adjust($primary-color, $lightness: -5%);
+    }
+}

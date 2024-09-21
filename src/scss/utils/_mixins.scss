@@ -1,0 +1,9 @@
+@mixin squiggly-line($color, $width) {
+    background-image: repeating-linear-gradient(0deg,
+            $color,
+            $color 2px,
+            transparent 2px,
+            transparent 4px);
+    background-size: $width auto;
+    background-repeat: repeat-y;
+}

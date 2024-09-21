@@ -1,2 +1,4 @@
 .alpackages
 .snapshots
+.mypy_cache
+node_modules
