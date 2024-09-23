@@ -1,7 +1,7 @@
 import '../scss/styles.scss'; // Import your SCSS styles
 import './background_animation';
 import { Hero } from '../components/hero';
-import { About } from '../components/about';
+import { About } from '../components/about/about';
 import { Contact } from '../components/contact';
 import { Footer } from '../components/footer';
 

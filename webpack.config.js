@@ -59,6 +59,10 @@ module.exports = {
           from: 'public/icons', // Copy icons from public to dist
           to: 'icons', // Destination folder in dist
         },
+        {
+          from: 'public/cv',
+          to: 'cv',
+        },
       ],
     }),
   ],

@@ -1,26 +1,32 @@
 .timeline {
     position: relative;
-    margin: 50px 0;
+    margin: 20px 0px 10px 0px;
     padding: 0;
+    list-style: none;
 
     &::before {
         content: '';
         position: absolute;
+        top: 0;
         left: 50%;
         width: 4px;
         height: 100%;
-        @include squiggly-line($primary-color, 4px);
+        background: $primary-color;
         transform: translateX(-50%);
     }
 
     .timeline-item {
         position: relative;
         width: 50%;
-        padding: 20px;
+        padding: 20px 40px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-end;
 
         &.left {
             left: 0;
             text-align: right;
+            flex-direction: row-reverse;
         }
 
         &.right {
@@ -36,6 +42,7 @@
             height: 20px;
             background-color: $primary-color;
             border-radius: 50%;
+            z-index: 1;
         }
 
         &.left::before {
@@ -50,23 +57,71 @@
             background: $card-bg;
             padding: 20px;
             border-radius: 8px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            margin-top: 0;
+            color: $primary-color;
+        }
+
+        p {
+            margin: 0;
         }
     }
 }
 
 @media (max-width: 768px) {
+
     .timeline {
+
         &::before {
-            left: 20px;
+            left: 0%;
+            right: none;
+            transform: none;
         }
 
         .timeline-item {
             width: 100%;
             left: 0 !important;
             text-align: left;
+            padding: 20px 20px 20px 40px;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
 
-            &::before {
-                left: 10px;
+            .content {
+                width: 100%;
+            }
+
+            &.right {
+                left: none;
+                text-align: center;
+            }
+
+            &.right::before {
+                left: none;
+            }
+        }
+    }
+}
+
+.timeline-item {
+    .content {
+        h3 {
+            font-size: 1.25rem;
+
+            @media (max-width: 768px) {
+                font-size: 1.1rem;
+            }
+        }
+
+        p {
+            font-size: 1rem;
+
+            @media (max-width: 768px) {
+                font-size: 0.95rem;
             }
         }
     }
