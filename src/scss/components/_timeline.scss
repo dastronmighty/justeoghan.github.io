@@ -61,6 +61,10 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .emoji {
+            font-size: 1.5rem; // Adjust the size of the emoji as needed
+        }
+
         h3 {
             margin-top: 0;
             color: $primary-color;

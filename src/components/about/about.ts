@@ -22,7 +22,9 @@ function generateTimelineItems() {
       aria-label="Timeline item: ${item.year}"
     >
       <div class="content">
-        <h3>${item.year}</h3>
+        <div class="header">
+          <h3>${item.year} <span class="emoji">${item.emoji}</span></h3>
+        </div>
         <p>${item.content}</p>
       </div>
     </div>
