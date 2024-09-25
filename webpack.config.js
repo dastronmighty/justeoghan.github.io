@@ -63,6 +63,11 @@ module.exports = {
           from: 'public/cv',
           to: 'cv',
         },
+        {
+          from: 'CNAME',
+          to: '.',
+          noErrorOnMissing: true,
+        },
       ],
     }),
   ],

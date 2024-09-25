@@ -27,6 +27,12 @@ jobs:
       - name: Build the project
         run: npm run build  # Build script generates the 'dist' folder
 
+      - name: Copy CNAME file
+        run: |
+          if [ -f CNAME ]; then
+            cp CNAME dist/
+          fi
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
