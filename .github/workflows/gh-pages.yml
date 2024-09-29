@@ -28,7 +28,7 @@ jobs:
         run: npm install react-scripts@latest --save  # Install the latest react-scripts
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps  # Use --legacy-peer-deps to resolve peer dependency conflicts
+        run: npm install
 
       - name: Build the project
         run: npm run build
