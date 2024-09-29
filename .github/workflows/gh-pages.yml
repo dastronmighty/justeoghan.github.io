@@ -30,8 +30,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build the project
-        run: npm run build
+      - name: Build the project with OpenSSL Legacy Provider
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
+          npm run build  # Build the project using the legacy OpenSSL provider
 
       - name: Copy CNAME file
         run: |
