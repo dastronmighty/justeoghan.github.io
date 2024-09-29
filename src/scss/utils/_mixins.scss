@@ -1,5 +1,0 @@
-@mixin squiggly-line($color, $width) {
-    background-image: linear-gradient($color, $color, $color , $color);
-    background-size: $width auto;
-    background-repeat: repeat-y;
-}
