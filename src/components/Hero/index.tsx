@@ -116,7 +116,7 @@ const HeroSection: React.FC = () => {
     }, []);
 
     return (
-        <header className="relative w-full h-screen ">
+        <header className="relative w-full h-screen overflow-hidden" style={{ backgroundColor: "rgb(230, 230, 230)" }}>
             <div ref={sketchRef} className="absolute top-0 left-0 w-full h-full"></div>
             <div className="absolute inset-0 clip-angled-transition-hero "></div>
             <div className="absolute inset-0 bg-gray-100 border-angled-transition-hero"></div>

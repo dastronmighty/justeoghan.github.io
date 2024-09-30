@@ -1,7 +1,11 @@
 .clip-angled-transition-hero {
-    z-index: 5;
-    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 100%;
+    width: 100%;
+    z-index: 5;
     clip-path: polygon(0 100%, 100% 90%, 100% 100%);
     background-image: radial-gradient(#000 1px, transparent 1px), radial-gradient(#000 1px, rgb(243 244 246) 1px);
     background-size: 100px 100px;
@@ -9,7 +13,13 @@
 }
 
 .border-angled-transition-hero {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
     z-index: 10;
     clip-path: polygon(100% 89%, 100% 90%, 0 100%, 0 99%);
-    background-color: rgb(96 165 250 / var(--tw-bg-opacity))
+    background-color: rgb(96 165 250 / var(--tw-bg-opacity));
 }
