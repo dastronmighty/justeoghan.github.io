@@ -1,0 +1,29 @@
+/* Change the color of the previous and next arrows */
+.color-slider-button .slick-prev::before,
+.color-slider-button .slick-next::before {
+    color: rgb(37 99 235);
+}
+
+/* Ensure the buttons have no background and borders */
+.color-slider-button .slick-prev,
+.color-slider-button .slick-next {
+    background: transparent;
+    border: none;
+}
+
+/* Optional: Hover effects */
+.color-slider-button .slick-prev:hover::before,
+.color-slider-button .slick-next:hover::before {
+    color: black;
+}
+
+/* Optional: Adjust positioning if needed */
+.color-slider-button .slick-prev {
+    left: -25px;
+    /* Adjust based on your layout */
+}
+
+.color-slider-button .slick-next {
+    right: -25px;
+    /* Adjust based on your layout */
+}

@@ -38,7 +38,6 @@ def print_directory_contents(root_dir, output_file, ignored_dirs, ignored_files)
                         for line in contents.splitlines():
                             f.write(f"{'  ' * (indent_level + 3)}{line}\n")
                 except Exception as e:
-                    # Handle any errors (e.g., binary files or permission errors)
                     f.write(
                         f"{'  ' * (indent_level + 2)}Error reading file: {str(e)}\n"
                     )
@@ -64,10 +63,15 @@ if __name__ == "__main__":
         ".mypy_cache",
         ".alpackages",
         ".git",
+        "build",
     ]
 
     # List of specific files to ignore
-    files_to_ignore = [".gitignore", "package.json", "package-lock.json"]
+    files_to_ignore = [
+        ".gitignore",
+        "package.json",
+        "package-lock.json",
+    ]
 
     # Call the function to print the directory structure and file contents
     print_directory_contents(

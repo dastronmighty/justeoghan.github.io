@@ -1,0 +1,1117 @@
+Directory: justeoghan.github.io
+  File: tailwind.config.js
+    Contents:
+      // tailwind.config.js
+      module.exports = {
+        content: [
+          "./src/**/*.{js,jsx,ts,tsx}",
+        ],
+        theme: {
+          extend: {},
+        },
+        plugins: [],
+      };
+  File: CNAME
+    Contents:
+      eoghanhogan.ie
+  File: directory_structure_and_contents.txt
+    Contents:
+  File: README.md
+    Contents:
+      Pages Site
+  File: tsconfig.json
+    Contents:
+      {
+        "compilerOptions": {
+          "target": "es5",
+          "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+          ],
+          "allowJs": true,
+          "skipLibCheck": true,
+          "esModuleInterop": true,
+          "allowSyntheticDefaultImports": true,
+          "strict": true,
+          "forceConsistentCasingInFileNames": true,
+          "noFallthroughCasesInSwitch": true,
+          "module": "esnext",
+          "moduleResolution": "node",
+          "resolveJsonModule": true,
+          "isolatedModules": true,
+          "noEmit": true,
+          "jsx": "preserve"
+        },
+        "include": [
+          "src"
+        ]
+      }
+  File: postcss.config.js
+    Contents:
+      module.exports = {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {},
+        },
+      }
+  File: file_printer.py
+    Contents:
+      import os
+      
+      
+      def print_directory_contents(root_dir, output_file, ignored_dirs, ignored_files):
+          """
+          Recursively print the directory structure and file contents into the output file.
+      
+          Parameters:
+          - root_dir: The directory to start scanning from (typically the root of the project).
+          - output_file: The file where the directory structure and file contents will be written.
+          - ignored_dirs: List of directories to ignore (e.g., node_modules, etc.).
+          - ignored_files: List of specific files to ignore (e.g., .gitignore, package.json, etc.).
+          """
+      
+          with open(output_file, "w", encoding="utf-8") as f:
+              for dirpath, dirnames, filenames in os.walk(root_dir):
+                  # Filter out ignored directories
+                  dirnames[:] = [d for d in dirnames if d not in ignored_dirs]
+      
+                  # Write the current directory name
+                  indent_level = dirpath.count(os.sep) - root_dir.count(os.sep)
+                  f.write(f"{'  ' * indent_level}Directory: {os.path.basename(dirpath)}\n")
+      
+                  for filename in filenames:
+                      # Skip ignored files
+                      if filename in ignored_files:
+                          continue
+      
+                      file_path = os.path.join(dirpath, filename)
+      
+                      # Write the file name
+                      f.write(f"{'  ' * (indent_level + 1)}File: {filename}\n")
+                      try:
+                          # Write the file contents
+                          with open(file_path, "r", encoding="utf-8") as file_content:
+                              contents = file_content.read()
+                              f.write(f"{'  ' * (indent_level + 2)}Contents:\n")
+                              for line in contents.splitlines():
+                                  f.write(f"{'  ' * (indent_level + 3)}{line}\n")
+                      except Exception as e:
+                          # Handle any errors (e.g., binary files or permission errors)
+                          f.write(
+                              f"{'  ' * (indent_level + 2)}Error reading file: {str(e)}\n"
+                          )
+      
+      
+      if __name__ == "__main__":
+          # Specify the root directory (where the script is located)
+          root_directory = os.path.dirname(os.path.abspath(__file__))
+      
+          # Specify the output file to save the directory structure and contents
+          output_file_path = os.path.join(
+              root_directory, "directory_structure_and_contents.txt"
+          )
+      
+          # List of directories to ignore (e.g., 'node_modules' or any other directory you want to exclude)
+          directories_to_ignore = [
+              "node_modules",
+              "dist",
+              "venv",
+              "__pycache__",
+              ".snapshots",
+              "misc",
+              ".mypy_cache",
+              ".alpackages",
+              ".git",
+              "build",
+          ]
+      
+          # List of specific files to ignore
+          files_to_ignore = [".gitignore", "package.json", "package-lock.json"]
+      
+          # Call the function to print the directory structure and file contents
+          print_directory_contents(
+              root_directory, output_file_path, directories_to_ignore, files_to_ignore
+          )
+      
+          print(f"Directory structure and file contents saved to {output_file_path}")
+  Directory: public
+    File: favicon-16x16.png
+      Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+    File: safari-pinned-tab.svg
+      Contents:
+        <?xml version="1.0" standalone="no"?>
+        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="600.000000pt" height="600.000000pt"
+            viewBox="0 0 600.000000 600.000000" preserveAspectRatio="xMidYMid meet">
+            <metadata>
+                Created by potrace 1.14, written by Peter Selinger 2001-2017
+            </metadata>
+            <g transform="translate(0.000000,600.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                <path d="M0 3000 l0 -3000 3000 0 3000 0 0 3000 0 3000 -3000 0 -3000 0 0
+        -3000z m3775 2910 c249 -10 311 -20 490 -77 342 -110 591 -272 800 -523 123
+        -148 293 -434 348 -585 30 -84 84 -284 102 -377 l12 -67 -36 -5 c-20 -4 -144
+        -13 -276 -21 -222 -14 -541 -47 -591 -61 -19 -5 -25 5 -62 95 -61 152 -171
+        305 -266 370 -64 44 -214 117 -291 141 -70 22 -73 22 -805 20 -445 -1 -755 -5
+        -785 -11 -27 -6 -96 -33 -152 -60 -238 -117 -403 -344 -455 -627 -8 -42 -12
+        -167 -13 -332 0 -231 2 -264 15 -260 8 3 799 5 1758 5 l1742 0 5 -30 c3 -16 5
+        -68 3 -115 -1 -47 0 -277 3 -512 l6 -427 -1766 2 -1766 2 -3 -170 c-7 -388 37
+        -563 194 -770 59 -78 112 -126 206 -184 100 -63 181 -89 310 -99 149 -12 1543
+        -6 1585 6 120 37 368 235 419 335 14 26 34 57 45 68 11 11 36 59 55 106 30 75
+        51 121 59 131 2 2 31 -6 66 -17 105 -33 337 -54 582 -53 203 2 218 1 213 -16
+        -3 -9 -12 -53 -21 -97 -100 -499 -287 -863 -580 -1127 -226 -205 -496 -346
+        -819 -429 -121 -31 -271 -36 -1126 -33 -753 3 -965 8 -956 23 3 4 -8 6 -23 3
+        -109 -16 -530 162 -705 297 -32 25 -78 60 -102 76 -62 43 -242 220 -295 291
+        -50 65 -122 188 -180 305 -77 155 -170 472 -189 641 -13 109 -12 2293 0 2483
+        10 143 48 341 87 450 14 39 34 102 45 140 11 39 33 90 48 115 15 25 31 56 35
+        70 8 29 94 161 113 173 6 4 21 25 32 47 11 21 30 47 43 57 14 10 27 28 31 39
+        6 19 50 61 183 177 222 193 592 351 933 398 173 23 1262 36 1695 19z" />
+                <path d="M2117 129 c7 -7 15 -10 18 -7 3 3 -2 9 -12 12 -14 6 -15 5 -6 -5z" />
+            </g>
+        </svg>
+    File: index.html
+      Contents:
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+        
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+            <link rel="manifest" href="/site.webmanifest">
+            <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#da532c">
+            <meta name="theme-color" content="#000000">
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+            <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+            <!--
+              manifest.json provides metadata used when your web app is installed on a
+              user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+            -->
+            <!--
+              Notice the use of %PUBLIC_URL% in the tags above.
+              It will be replaced with the URL of the `public` folder during the build.
+              Only files inside the `public` folder can be referenced from the HTML.
+        
+              Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+              work correctly both with client-side routing and a non-root public URL.
+              Learn how to configure a non-root public URL by running `npm run build`.
+            -->
+            <title>Eoghan</title>
+          </head>
+          <body>
+            <noscript>You need to enable JavaScript to run this app.</noscript>
+            <div id="root"></div>
+            <!--
+              This HTML file is a template.
+              If you open it directly in the browser, you will see an empty page.
+        
+              You can add webfonts, meta tags, or analytics to this file.
+              The build step will place the bundled scripts into the <body> tag.
+        
+              To begin the development, run `npm start` or `yarn start`.
+              To create a production bundle, use `npm run build` or `yarn build`.
+            -->
+          </body>
+        </html>
+    File: android-chrome-192x192.png
+      Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+    File: apple-touch-icon.png
+      Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+    File: favicon copy.ico
+      Error reading file: 'utf-8' codec can't decode byte 0xa8 in position 14: invalid start byte
+    File: android-chrome-512x512.png
+      Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+    File: site.webmanifest
+      Contents:
+        {
+            "name": "Eoghan Hogan",
+            "short_name": "Ehogan",
+            "icons": [
+                {
+                    "src": "/android-chrome-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/android-chrome-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ],
+            "theme_color": "##000000",
+            "background_color": "#000000",
+            "display": "standalone"
+        }
+    File: robots.txt
+      Contents:
+        # https://www.robotstxt.org/robotstxt.html
+        User-agent: *
+        Disallow:
+    File: mstile-150x150.png
+      Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+    File: browserconfig.xml
+      Contents:
+        <?xml version="1.0" encoding="utf-8"?>
+        <browserconfig>
+            <msapplication>
+                <tile>
+                    <square150x150logo src="/mstile-150x150.png"/>
+                    <TileColor>#da532c</TileColor>
+                </tile>
+            </msapplication>
+        </browserconfig>
+    File: favicon-32x32.png
+      Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+    Directory: icons
+      File: github-mark-white.svg
+        Contents:
+          <svg width="98" height="96" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="#fff"/></svg>
+      File: github-mark.svg
+        Contents:
+          <svg width="98" height="96" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="#24292f"/></svg>
+      File: linkedin.svg
+        Contents:
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1d75cc" class="bi bi-linkedin"
+              viewBox="0 0 16 16">
+              <path
+                  d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+          </svg>
+    Directory: cv
+      File: CV0924.pdf
+        Error reading file: 'utf-8' codec can't decode byte 0xc4 in position 10: invalid continuation byte
+  Directory: .github
+    Directory: workflows
+      File: gh-pages.yml
+        Contents:
+          name: Deploy to GitHub Pages
+          
+          on:
+            push:
+              branches:
+                - main  # Replace 'main' with your branch if different
+          
+          jobs:
+            build:
+              runs-on: ubuntu-latest
+          
+              permissions:
+                contents: write  # Allow actions to push to the repo
+          
+              steps:
+                - name: Checkout code
+                  uses: actions/checkout@v2
+          
+                - name: Set up Node.js
+                  uses: actions/setup-node@v2
+                  with:
+                    node-version: "21" 
+          
+                - name: Confirm Node.js version
+                  run: node -v  # This checks the installed Node.js version
+          
+                - name: Install react-scripts@latest
+                  run: npm install react-scripts@latest
+          
+                - name: Install dependencies
+                  run: npm install
+          
+                - name: Build the project with OpenSSL Legacy Provider
+                  run: npm run build
+          
+                - name: Copy CNAME file
+                  run: |
+                    if [ -f CNAME ]; then
+                      cp CNAME build/
+                    fi
+          
+                - name: Deploy to GitHub Pages
+                  uses: peaceiris/actions-gh-pages@v3
+                  with:
+                    github_token: ${{ secrets.GITHUB_TOKEN }}
+                    publish_dir: ./build  # Deploy content from the 'build' folder
+                    publish_branch: gh-pages
+                    force_orphan: true  # Force orphan commit, no branch history
+  Directory: src
+    File: index.tsx
+      Contents:
+        import React from 'react';
+        import ReactDOM from 'react-dom/client';
+        import './index.css';
+        import App from './App';
+        import reportWebVitals from './reportWebVitals';
+        
+        const root = ReactDOM.createRoot(
+          document.getElementById('root') as HTMLElement
+        );
+        root.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        );
+        
+        // If you want to start measuring performance in your app, pass a function
+        // to log results (for example: reportWebVitals(console.log))
+        // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+        reportWebVitals();
+    File: App.tsx
+      Contents:
+        import React from 'react';
+        
+        import HeroSection from './components/Hero';
+        import AboutMe from './components/aboutme/Aboutme';
+        import Timeline from './components/timeline';
+        import Contact from './components/contact';
+        import Footer from './components/footer';
+        import Projects from './components/projects';
+        
+        const App: React.FC = () => {
+          return (
+            <div className="App" style={{
+              backgroundImage: "radial-gradient(#5a8aff 1.75px, transparent 1.75px), radial-gradient(#5a8aff 1.75px, rgb(243 244 246) 1.75px)",
+              backgroundSize: "100px 100px",
+              backgroundPosition: "0 0, 50px 50px",
+            }}>
+              <HeroSection />
+        
+              <AboutMe />
+        
+              <Timeline />
+        
+              <Contact />
+        
+              <Projects />
+        
+              <Footer />
+            </div>
+          );
+        };
+        
+        
+        export default App;
+    File: App.css
+      Contents:
+    File: index.css
+      Contents:
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        
+        /* Add these lines to your main CSS file */
+        @import "~slick-carousel/slick/slick.css";
+        @import "~slick-carousel/slick/slick-theme.css";
+        
+        html {
+          scroll-behavior: smooth;
+        }
+    File: setupTests.ts
+      Contents:
+        // jest-dom adds custom jest matchers for asserting on DOM nodes.
+        // allows you to do things like:
+        // expect(element).toHaveTextContent(/react/i)
+        // learn more: https://github.com/testing-library/jest-dom
+        import '@testing-library/jest-dom';
+    File: reportWebVitals.ts
+      Contents:
+        import { ReportHandler } from 'web-vitals';
+        
+        const reportWebVitals = (onPerfEntry?: ReportHandler) => {
+          if (onPerfEntry && onPerfEntry instanceof Function) {
+            import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+              getCLS(onPerfEntry);
+              getFID(onPerfEntry);
+              getFCP(onPerfEntry);
+              getLCP(onPerfEntry);
+              getTTFB(onPerfEntry);
+            });
+          }
+        };
+        
+        export default reportWebVitals;
+    File: react-app-env.d.ts
+      Contents:
+        /// <reference types="react-scripts" />
+    Directory: components
+      Directory: footer
+        File: index.tsx
+          Contents:
+            import React from 'react';
+            
+            const Footer: React.FC = () => {
+                return (
+                    <footer className="bg-gray-900 text-white py-8">
+                        <div className="container mx-auto px-4 text-center">
+                            <div className="flex justify-center space-x-6 mb-4">
+                                {/* GitHub Link */}
+                                <a
+                                    href="https://github.com/dastronmighty"
+                                    aria-label="GitHub"
+                                    className="hover:opacity-75 transition duration-300"
+                                >
+                                    <img src="icons/github-mark-white.svg" alt="GitHub" className="w-8 h-8" />
+                                </a>
+            
+                                {/* LinkedIn Link */}
+                                <a
+                                    href="https://www.linkedin.com/in/eoghanhogan99/"
+                                    aria-label="LinkedIn"
+                                    className="hover:opacity-75 transition duration-300"
+                                >
+                                    <img src="icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
+                                </a>
+                            </div>
+                            <p className="text-sm">&copy; {new Date().getFullYear()} Eoghan Hogan. All rights reserved.</p>
+                        </div>
+                    </footer>
+                );
+            };
+            
+            export default Footer;
+      Directory: angledLine
+        File: index.tsx
+          Contents:
+            import React from 'react';
+            import './index.css'
+            
+            const AngledLine: React.FC = () => {
+                return (
+                    <div className="relative w-full h-24">
+                        <div className="absolute inset-0 clip-angled-transition"></div>
+                    </div>
+                );
+            };
+            
+            export default AngledLine;
+        File: index.css
+          Contents:
+            .clip-angled-transition {
+                z-index: 10;
+                width: 100%;
+                height: 100%;
+                clip-path: polygon(100% 0, 100% 6%, 0 100%, 0 95%);
+                position: relative;
+                background-color: rgb(96 165 250);
+            }
+      Directory: contact
+        File: index.tsx
+          Contents:
+            import React from 'react';
+            
+            const Contact: React.FC = () => {
+                return (
+                    <section id="contact" className="py-20">
+                        <div className="container mx-auto px-4">
+                            <h2 className="relative text-4xl font-bold text-center mb-8">
+                                Contact Me
+                                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] w-48 h-1 bg-blue-400 rotate-2"></span>
+                            </h2>
+                            <form
+                                id="contact-form"
+                                action="https://formspree.io/f/mblrvzwy"
+                                method="POST"
+                                className="max-w-2xl mx-auto bg-white shadow-xl rounded-lg p-8"
+                            >
+                                <div className="mb-6">
+                                    <label htmlFor="name" className="block text-lg font-semibold mb-2">
+                                        Name<span aria-hidden="true" className="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        required
+                                        aria-required="true"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+            
+                                <div className="mb-6">
+                                    <label htmlFor="email" className="block text-lg font-semibold mb-2">
+                                        Email<span aria-hidden="true" className="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="_replyto"
+                                        required
+                                        aria-required="true"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+            
+                                <div className="mb-6">
+                                    <label htmlFor="message" className="block text-lg font-semibold mb-2">
+                                        Message<span aria-hidden="true" className="text-red-500">*</span>
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        required
+                                        aria-required="true"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        rows={5}
+                                    ></textarea>
+                                </div>
+            
+                                <button
+                                    type="submit"
+                                    className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+                                >
+                                    Send Message
+                                </button>
+                            </form>
+            
+                            <hr className="my-8 border-gray-100" />
+            
+                            <div className="text-center">
+                                <a
+                                    href="cv/CV0924.pdf"
+                                    className="inline-block bg-gray-800 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition duration-300"
+                                    aria-label="Download CV"
+                                    download
+                                >
+                                    Download CV
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                );
+            };
+            
+            
+            export default Contact;
+      Directory: projects
+        File: index.tsx
+          Contents:
+            import React from "react";
+            import Slider from "react-slick";
+            
+            const projectData = [
+                {
+                    title: "URL Shortener",
+                    description: "A URL shortner Project built with React and MongoDB",
+                    githubLink: "https://github.com/dastronmighty/url-shortener",
+                    year: "2018"
+                },
+                {
+                    title: "Gamma Gym",
+                    description: "Final Year thesis which won me the Franz Geiselbrechtinger Medal for best project in a Domain.",
+                    githubLink: "https://github.com/dastronmighty/gammagym/blob/main/no_code/GammaGym.pdf",
+                    year: "2021"
+                },
+                {
+                    title: "MCM Project",
+                    description: "During college me and Two Colleagues entered the Mathematical Competition in Modelling. We got a \"Honorable Mention\" which only about 21% of teams get",
+                    githubLink: "https://github.com/dastronmighty/MCM-2019/blob/latex_file/Super_Drone_Fleet.pdf",
+                    year: "2019"
+                },
+                {
+                    title: "PHP api Showcase",
+                    description: "Basically I was interested in checking out PHP as a backend and this shows how useful it can be",
+                    githubLink: "https://github.com/dastronmighty/php-api-showcase",
+                    year: "2023"
+                },
+                {
+                    title: "Fit Together",
+                    description: "A MERN stack app for fitness groups. Create, Join and find new friends with this all in one fitness group apps.",
+                    githubLink: "https://github.com/dastronmighty/Fit-Together",
+                    year: "2018"
+                },
+                {
+                    title: "Naughts and Crosses React app",
+                    description: "A React App using Min-Max to plpay Xs and Os",
+                    githubLink: "https://github.com/dastronmighty/x-o-react-app",
+                    year: "2022"
+                }
+            ];
+            
+            
+            const Projects: React.FC = () => {
+                // Sort projectData by year in descending order (most recent first)
+                const sortedProjectData = [...projectData].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+            
+                // Settings for the react-slick carousel
+                const settings = {
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                            },
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 1,
+                            },
+                        },
+                    ],
+                };
+            
+                return (
+                    <section id="projects" className="py-20">
+                        <div className="container mx-auto px-4">
+                            <h2 className="relative text-4xl font-bold text-center mb-8">
+                                Projects
+                                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] w-48 h-1 bg-blue-400 rotate-2"></span>
+                            </h2>
+                            <Slider {...settings}>
+                                {sortedProjectData.map((project, index) => (
+                                    <div key={index} className="p-4">
+                                        <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6 backdrop-blur-md">
+                                            <h3 className="text-xl font-semibold mb-2 text-blue-900">
+                                                {project.title}
+                                            </h3>
+                                            <p className="text-gray-700 mb-4">{project.description}</p>
+                                            <a
+                                                href={project.githubLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-block bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+                                            >
+                                                View on GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                ))}
+                            </Slider>
+                        </div>
+                    </section>
+                );
+            };
+            
+            export default Projects;
+      Directory: aboutme
+        File: Aboutme.tsx
+          Contents:
+            import React from 'react';
+            
+            
+            const AboutMe: React.FC = () => {
+                return (
+                    <section id="about" className="py-20">
+                        <div className="container mx-auto px-4">
+                            <h2 className="relative text-4xl font-bold text-center mb-8">
+                                About Me
+                                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] w-48 h-1 bg-blue-400 rotate-2"></span>
+                            </h2>
+                            <div className="relative text-lg leading-8 text-gray-700 max-w-6xl mx-auto p-6 bg-gray-100/90 backdrop-blur-md rounded-xl shadow-xl">
+                                <p>
+                                    Hello! <br />
+                                    I'm Eoghan, a self-taught programmer turned Bs.c in Computer Science with a focus on Data Science. I became interested in AI for Minecraft, which eventually grew into a career. <br />
+                                    I'm passionate about creating a better world with the power of Machine Learning.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                );
+            };
+            
+            export default AboutMe;
+      Directory: Hero
+        File: Boid.ts
+          Contents:
+            import { Vector, p5InstanceExtensions } from "p5";
+            import { Cluster } from './types';
+            
+            export class Boid {
+                p5: p5InstanceExtensions;
+                position: Vector;
+                velocity: Vector;
+                acceleration: Vector;
+                maxForce: number;
+                maxSpeed: number;
+                size: number;
+                cluster: Cluster | null;
+            
+                constructor(x: number, y: number, p5: p5InstanceExtensions) {
+                    this.p5 = p5;
+                    this.position = Vector.fromAngle(Math.random() * Math.PI * 2).mult(100).add(x, y);
+                    this.velocity = Vector.random2D();
+                    this.velocity.setMag(Math.random() * 2 + 2);
+                    this.acceleration = this.p5.createVector(0, 0);
+                    this.maxForce = 0.2;
+                    this.maxSpeed = 4;
+                    this.size = 6;
+                    this.cluster = null;
+                }
+            
+                edges(width: number, height: number) {
+                    if (this.position.x > width) this.position.x = 0;
+                    else if (this.position.x < 0) this.position.x = width;
+            
+                    if (this.position.y > height) this.position.y = 0;
+                    else if (this.position.y < 0) this.position.y = height;
+                }
+            
+                align(boids: Boid[]): Vector {
+                    let perceptionRadius = 50;
+                    let steering = this.p5.createVector(0, 0);
+                    let total = 0;
+                    for (let other of boids) {
+                        let d = Vector.dist(this.position, other.position);
+                        if (other !== this && d < perceptionRadius) {
+                            steering.add(other.velocity);
+                            total++;
+                        }
+                    }
+                    if (total > 0) {
+                        steering.div(total);
+                        steering.setMag(this.maxSpeed);
+                        steering.sub(this.velocity);
+                        steering.limit(this.maxForce);
+                    }
+                    return steering;
+                }
+            
+                cohesion(boids: Boid[]): Vector {
+                    let perceptionRadius = 50;
+                    let steering = this.p5.createVector(0, 0);
+                    let total = 0;
+                    for (let other of boids) {
+                        let d = Vector.dist(this.position, other.position);
+                        if (other !== this && d < perceptionRadius) {
+                            steering.add(other.position);
+                            total++;
+                        }
+                    }
+                    if (total > 0) {
+                        steering.div(total);
+                        steering.sub(this.position);
+                        steering.setMag(this.maxSpeed);
+                        steering.sub(this.velocity);
+                        steering.limit(this.maxForce);
+                    }
+                    return steering;
+                }
+            
+                separation(boids: Boid[]): Vector {
+                    let perceptionRadius = 24;
+                    let steering = this.p5.createVector(0, 0);
+                    let total = 0;
+                    for (let other of boids) {
+                        let d = Vector.dist(this.position, other.position);
+                        if (other !== this && d < perceptionRadius) {
+                            let diff = Vector.sub(this.position, other.position);
+                            diff.div(d * d); // Weight by distance
+                            steering.add(diff);
+                            total++;
+                        }
+                    }
+                    if (total > 0) {
+                        steering.div(total);
+                        steering.setMag(this.maxSpeed);
+                        steering.sub(this.velocity);
+                        steering.limit(this.maxForce);
+                    }
+                    return steering;
+                }
+            
+                flock(boids: Boid[]) {
+                    let alignment = this.align(boids);
+                    let cohesion = this.cohesion(boids);
+                    let separation = this.separation(boids);
+            
+                    alignment.mult(1.0);
+                    cohesion.mult(1.0);
+                    separation.mult(1.5);
+            
+                    this.acceleration.add(alignment);
+                    this.acceleration.add(cohesion);
+                    this.acceleration.add(separation);
+                }
+            
+                update() {
+                    this.position.add(this.velocity);
+                    this.velocity.add(this.acceleration);
+                    this.velocity.limit(this.maxSpeed);
+                    this.acceleration.mult(0);
+                }
+            
+                show(clusterColor: number[]) {
+                    let theta = this.velocity.heading() + this.p5.PI / 2;
+            
+                    this.p5.fill(clusterColor[0], clusterColor[1], clusterColor[2], clusterColor[3]);
+                    this.p5.noStroke();
+            
+                    this.p5.push();
+                    this.p5.translate(this.position.x, this.position.y);
+                    this.p5.rotate(theta);
+                    this.p5.beginShape();
+                    this.p5.vertex(0, -this.size * 2);
+                    this.p5.vertex(-this.size, this.size * 2);
+                    this.p5.vertex(this.size, this.size * 2);
+                    this.p5.endShape(this.p5.CLOSE);
+                    this.p5.pop();
+                }
+            }
+        File: index.tsx
+          Contents:
+            import React, { useRef, useEffect } from 'react';
+            import p5 from "p5";
+            import { Boid } from './Boid';
+            import { ClusterClass } from './ClusterClass';
+            import { Cluster } from './types';
+            import './Hero.css'
+            
+            const HeroSection: React.FC = () => {
+                const sketchRef = useRef<HTMLDivElement>(null);
+            
+                useEffect(() => {
+                    let myp5: p5;
+            
+                    const sketch = (p: p5) => {
+                        let boids: Boid[] = [];
+                        const BOID_COUNT = 100;
+                        let clusters: Cluster[] = [];
+                        let distanceThreshold = 50;
+            
+                        // Define pastel colors with RGBA
+                        const pastelColors: { [key: string]: number[] } = {
+                            white: [0, 0, 0, 200],
+                            pastelBlue: [89, 144, 245, 200],
+                            pastelGreen: [119, 221, 119, 200],
+                            pastelRed: [255, 105, 97, 200],
+                        };
+            
+                        p.setup = () => {
+                            p.createCanvas(p.windowWidth, p.windowHeight);
+                            p.background(230, 230, 230);
+            
+                            // Initialize boids
+                            for (let i = 0; i < BOID_COUNT; i++) {
+                                boids.push(new Boid(p.random(p.width), p.random(p.height), p));
+                            }
+                        };
+            
+                        p.draw = () => {
+                            p.background(220, 220, 220, 150); // Semi-transparent background for trailing effect
+            
+                            // Reset clusters
+                            clusters = [];
+            
+                            // Assign boids to clusters
+                            assignClusters();
+            
+                            // Assign colors to clusters based on their sizes
+                            assignClusterColors();
+            
+                            // Update and display boids
+                            for (let boid of boids) {
+                                boid.edges(p.width, p.height);
+                                boid.flock(boids);
+                                boid.update();
+                                if (boid.cluster) {
+                                    boid.show(boid.cluster.color);
+                                }
+                            }
+                        };
+            
+                        function assignClusters() {
+                            for (let boid of boids) {
+                                let added = false;
+                                for (let cluster of clusters) {
+                                    for (let member of cluster.members) {
+                                        let d = p.dist(
+                                            boid.position.x,
+                                            boid.position.y,
+                                            member.position.x,
+                                            member.position.y
+                                        );
+                                        if (d < distanceThreshold) {
+                                            cluster.members.push(boid);
+                                            boid.cluster = cluster;
+                                            added = true;
+                                            break;
+                                        }
+                                    }
+                                    if (added) break;
+                                }
+                                if (!added) {
+                                    // Create a new cluster
+                                    let newCluster = new ClusterClass();
+                                    newCluster.members.push(boid);
+                                    clusters.push(newCluster);
+                                    boid.cluster = newCluster;
+                                }
+                            }
+                        }
+            
+                        function assignClusterColors() {
+                            for (let cluster of clusters) {
+                                let size = cluster.members.length;
+                                if (size >= 1 && size <= 5) {
+                                    cluster.color = pastelColors.white;
+                                } else if (size > 5 && size <= 10) {
+                                    cluster.color = pastelColors.pastelBlue;
+                                } else if (size > 10 && size <= 20) {
+                                    cluster.color = pastelColors.pastelGreen;
+                                } else {
+                                    cluster.color = pastelColors.pastelRed;
+                                }
+                            }
+                        }
+            
+                        p.windowResized = () => {
+                            p.resizeCanvas(p.windowWidth, p.windowHeight);
+                        };
+                    };
+            
+                    myp5 = new p5(sketch, sketchRef.current!);
+            
+                    return () => {
+                        myp5.remove(); // Clean up the p5 instance on component unmount
+                    };
+                }, []);
+            
+                return (
+                    <header className="relative w-full h-screen ">
+                        <div ref={sketchRef} className="absolute top-0 left-0 w-full h-full"></div>
+                        <div className="absolute inset-0 clip-angled-transition-hero "></div>
+                        <div className="absolute inset-0 bg-gray-100 border-angled-transition-hero"></div>
+                        <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-black z-20">
+                            <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-bold">
+                                Eoghan Hogan
+                                <span className="absolute left-0 bottom-[-10px] w-full h-1 bg-blue-400 transform rotate-2"></span>
+                            </h1>
+                            <h2 className="mt-4 text-2xl md:text-3xl lg:text-4xl">Imagine. Create. Commit.</h2>
+                        </div>
+                    </header>
+                );
+            };
+            
+            export default HeroSection;
+        File: Hero.css
+          Contents:
+            .clip-angled-transition-hero {
+                z-index: 5;
+                width: 100%;
+                height: 100%;
+                clip-path: polygon(0 100%, 100% 90%, 100% 100%);
+                background-image: radial-gradient(#5a8aff 1.75px, transparent 1.75px), radial-gradient(#5a8aff 1.75px, rgb(243 244 246) 1.75px);
+                background-size: 100px 100px;
+                background-position: 0 0, 50px 50px;
+            }
+            
+            .border-angled-transition-hero {
+                z-index: 10;
+                clip-path: polygon(100% 89%, 100% 90%, 0 100%, 0 99%);
+                background-color: rgb(96 165 250 / var(--tw-bg-opacity))
+            }
+        File: types.ts
+          Contents:
+            import { Boid } from './Boid';
+            
+            export interface Cluster {
+                members: Boid[];
+                color: number[];
+            }
+        File: ClusterClass.ts
+          Contents:
+            import { Cluster } from './types';
+            import { Boid } from './Boid';
+            
+            export class ClusterClass implements Cluster {
+                members: Boid[];
+                color: number[];
+            
+                constructor() {
+                    this.members = [];
+                    this.color = [255, 255, 255, 200]; // Default to white
+                }
+            }
+      Directory: timeline
+        File: index.tsx
+          Contents:
+            import React from "react";
+            import { timelineData } from "./data";
+            
+            const Timeline: React.FC = () => {
+                return (
+                    <section id="timeline" className="py-20">
+                        <div className="container mx-auto px-4">
+                            <h2 className="relative text-4xl font-bold text-center mb-8">
+                                Timeline
+                                <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] w-48 h-1 bg-blue-400 rotate-2"></span>
+                            </h2>
+                            <div className="timeline">
+                                {timelineData.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="timeline-item backdrop-blur-md backdrop-brightness-150 bg-gray-100/80 backdrop-blur-md rounded-lg p-6 mb-6 shadow-xl"
+                                    >
+                                        <div className="flex items-center justify-between mb-2">
+                                            <span className="text-3xl">{item.emoji}</span>
+                                            <h3 className="text-xl font-semibold text-right text-blue-900">{item.year}</h3>
+                                        </div>
+                                        <p className="text-gray-800">{item.content}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                );
+            };
+            
+            export default Timeline;
+        File: data.ts
+          Contents:
+            export const timelineData = [
+                {
+                    year: 'Nov 2023 - Present',
+                    emoji: "👨‍💻🔍",
+                    content: 'Machine Learning Engineer at Apple IST Conversational Engineering. Developed full stack data generation app and built an evaluation harness for testing large language models.',
+                },
+                {
+                    year: 'Apr 2023 - Nov 2023',
+                    emoji: "📝💻",
+                    content: 'Full Stack Engineer at Apple Collaboration and Productivity team. Implemented real-time sharable notes in internal collaboration tool using PHP and YJS.',
+                },
+                {
+                    year: 'Oct 2022 - Apr 2023',
+                    emoji: "📊🎯",
+                    content: 'Technical Program Manager at Apple IST Customer Systems Team. Led ML project for Apple Care eMail, working with stakeholders and providing regular updates.',
+                },
+                {
+                    year: 'Mar 2022 - Oct 2022',
+                    emoji: "🧪🔍",
+                    content: 'Data Scientist + Web Developer at Apple GBI Team. Created a web tool for time-series peak-trough detection and sequence identification.',
+                },
+                {
+                    year: 'Sep 2021 - Mar 2022',
+                    emoji: "📈🔧",
+                    content: 'Support Data Scientist at Apple IST SAP team. Developed an anomaly detection pipeline for invoice prediction.',
+                },
+                {
+                    year: 'Mar 2020 - Sep 2020',
+                    emoji: "🤖🗣️",
+                    content: 'ML Intern at Apple. Worked on multilingual sentiment analysis and named entity recognition systems.',
+                },
+                {
+                    year: 'Jun 2019 - Jul 2019',
+                    emoji: "🌐🚀",
+                    content: 'IT Intern at Bizintra Financial Academy. Working on new affiliate Portal. Left to pursue hobbies for the rest of the summer.',
+                },
+                {
+                    year: 'Jun 2018 - Aug 2018',
+                    emoji: "🛠️🚖",
+                    content: 'Tech Intern at CarTrawler. Built customer satisfaction web app and debugging tool for cab-hailing app using React and Google Maps apis.',
+                },
+                {
+                    year: '2017 - 2021',
+                    emoji: "🎓🏅",
+                    content: 'Bachelor of Science in Computer Science with Data Science, University College Dublin. First Class Honours, awarded Franz Geiselbrechtinger Medal.',
+                },
+                {
+                    year: '2013 - 2017',
+                    emoji: "💡🎮",
+                    content: 'Experimenting with programming occasionally. Java Calculators. Minecraft Mods. Javscript basics for websites.',
+                }
+            ];
