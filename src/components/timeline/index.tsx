@@ -3,7 +3,7 @@ import { timelineData } from "./data";
 
 const Timeline: React.FC = () => {
     return (
-        <section id="timeline" className="py-20 bg-gray-100">
+        <section id="timeline" className="py-20">
             <div className="container mx-auto px-4">
                 <h2 className="relative text-4xl font-bold text-center mb-8">
                     Timeline
@@ -13,7 +13,7 @@ const Timeline: React.FC = () => {
                     {timelineData.map((item, index) => (
                         <div
                             key={index}
-                            className="timeline-item backdrop-blur-md backdrop-brightness-150 backdrop-blur-xl rounded-lg p-6 mb-6 shadow-xl"
+                            className="timeline-item backdrop-blur-md backdrop-brightness-150 bg-gray-100/80 backdrop-blur-md rounded-lg p-6 mb-6 shadow-xl"
                         >
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-3xl">{item.emoji}</span>

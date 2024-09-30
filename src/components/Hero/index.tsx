@@ -118,7 +118,7 @@ const HeroSection: React.FC = () => {
     return (
         <header className="relative w-full h-screen ">
             <div ref={sketchRef} className="absolute top-0 left-0 w-full h-full"></div>
-            <div className="absolute inset-0 bg-gray-100 clip-angled-transition-hero"></div>
+            <div className="absolute inset-0 clip-angled-transition-hero "></div>
             <div className="absolute inset-0 bg-gray-100 border-angled-transition-hero"></div>
             <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-black z-20">
                 <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-bold">
