@@ -111,7 +111,7 @@ const HeroSection: React.FC = () => {
         myp5 = new p5(sketch, sketchRef.current!);
 
         return () => {
-            myp5.remove(); // Clean up the p5 instance on component unmount
+            myp5.remove();
         };
     }, []);
 
@@ -123,7 +123,7 @@ const HeroSection: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-black z-20">
                 <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-bold">
                     Eoghan Hogan
-                    <span className="absolute left-0 bottom-[-10px] w-full h-1 bg-blue-400 transform rotate-2"></span>
+                    <span className="absolute left-0 bottom-[-10px] w-full h-1 bg-blue-400 transform rotate-1"></span>
                 </h1>
                 <h2 className="mt-4 text-2xl md:text-3xl lg:text-4xl">Imagine. Create. Commit.</h2>
             </div>
