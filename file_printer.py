@@ -64,6 +64,7 @@ if __name__ == "__main__":
         ".alpackages",
         ".git",
         "build",
+        "icons",
     ]
 
     # List of specific files to ignore

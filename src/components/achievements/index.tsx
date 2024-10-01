@@ -3,35 +3,39 @@ import Slider from 'react-slick';
 import { achievementsData, Achievement } from './data';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import "../../carousel.css"
 
 const Achievements: React.FC = () => {
-    const sortedAchievementsData = [...achievementsData].sort((a, b) => parseInt(b.date) - parseInt(a.date));
-
     // Define the settings for react-slick carousel
     const settings = {
         dots: false, // Show dots below the carousel
         infinite: true, // Enable infinite loop
         speed: 500, // Animation speed
-        slidesToShow: 3, // Number of slides to show at once
+        slidesToShow: 2, // Number of slides to show at once
         slidesToScroll: 1, // Number of slides to scroll per click
-        rows: 2,
         responsive: [
             {
-                breakpoint: 1024, // On large devices
+                breakpoint: 1024, // Tablet view
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2
                 },
+                dots: false, // Show dots on mobile
+                arrows: true, // Hide arrows on mobile
             },
             {
-                breakpoint: 768, // On medium devices (tablets)
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 640, // On small devices (phones)
+                breakpoint: 768, // Mobile view
                 settings: {
                     slidesToShow: 1,
+                    dots: true, // Show dots on mobile
+                    arrows: false, // Hide arrows on mobile
+                },
+            },
+            {
+                breakpoint: 640, // Smaller mobile view
+                settings: {
+                    slidesToShow: 1,
+                    dots: true, // Ensure dots are shown
+                    arrows: false, // Hide arrows on mobile
                 },
             },
         ],
@@ -47,7 +51,7 @@ const Achievements: React.FC = () => {
 
                 {/* React Slick Slider */}
                 <Slider {...settings} className='color-slider-button'>
-                    {sortedAchievementsData.map((achievement: Achievement, index: number) => (
+                    {achievementsData.map((achievement: Achievement, index: number) => (
                         <div key={index} className="p-4">
                             <div className="bg-white shadow-lg rounded-lg p-6 backdrop-blur-md">
                                 {achievement.icon && (

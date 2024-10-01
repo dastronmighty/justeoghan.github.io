@@ -5,7 +5,7 @@ import AboutMe from './components/aboutme/Aboutme';
 import Timeline from './components/timeline';
 import Contact from './components/contact';
 import Footer from './components/footer';
-import Projects from './components/projects';
+import Projects from './components/projects_certs';
 import Achievements from './components/achievements';
 
 const App: React.FC = () => {
@@ -21,9 +21,9 @@ const App: React.FC = () => {
 
       <Timeline />
 
-      <Contact />
-
       <Projects />
+
+      <Contact />
 
       <Footer />
     </div>

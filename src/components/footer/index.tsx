@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
                 <div className="flex justify-center space-x-6 mb-4">
                     {/* GitHub Link */}
                     <a
-                        href="https://github.com/dastronmighty"
+                        href="https://github.com/dastronmighty/justeoghan.github.io"
                         aria-label="GitHub"
                         className="hover:opacity-75 transition duration-300"
                     >
@@ -22,6 +22,7 @@ const Footer: React.FC = () => {
                     >
                         <img src="icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
                     </a>
+
                 </div>
                 <p className="text-sm">&copy; {new Date().getFullYear()} Eoghan Hogan. All rights reserved.</p>
             </div>

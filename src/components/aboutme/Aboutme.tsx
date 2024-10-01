@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const AboutMe: React.FC = () => {
     return (
         <section id="about" className="py-20">
@@ -11,8 +10,10 @@ const AboutMe: React.FC = () => {
                 </h2>
                 <div className="relative text-lg leading-8 text-gray-700 max-w-6xl mx-auto p-6 bg-white backdrop-blur-md rounded-xl shadow-xl">
                     <p>
-                        Hi 👋 <br /> I'm Eoghan, a self-taught programmer turned B.Sc. in Computer Science, with a focus on Data Science. My journey into AI began with modding Minecraft—creating new mobs and mods really sparked my curiosity, and what started as a hobby soon grew into a career.
-                        I'm particularly fascinated by Self-Play and Reinforcement Learning, and I’m passionate about leveraging Machine Learning to create meaningful change. I strongly believe in the power of open-source software and ensuring free access to knowledge for everyone, with the goal of building a better world through technology.
+                        Hi 👋 <br /> I'm Eoghan, a Bachelor of Science in Computer Science with a focus on Data Science from University College Dublin. My journey into AI began with modding Minecraft—creating new mobs and mods ignited my curiosity, turning what started as a hobby into a fulfilling career.
+                    </p>
+                    <p className="mt-4">
+                        I'm particularly fascinated by Reinforcement Learning, and I'm passionate about leveraging machine learning to drive meaningful change. I strongly believe in the power of open-source software and the importance of providing free access to knowledge for everyone.
                     </p>
                 </div>
             </div>
