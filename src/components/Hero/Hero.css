@@ -7,9 +7,7 @@
     width: 100%;
     z-index: 5;
     clip-path: polygon(0 100%, 100% 90%, 100% 100%);
-    background-image: radial-gradient(#000 1px, transparent 1px), radial-gradient(#000 1px, rgb(243 244 246) 1px);
-    background-size: 100px 100px;
-    background-position: 0 0, 50px 50px;
+    background-color: rgb(243 244 246);
 }
 
 .border-angled-transition-hero {

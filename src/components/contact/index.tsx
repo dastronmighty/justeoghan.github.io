@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
 
                 {/* Updated Shoot Me a Message Text */}
                 <p className="text-center text-xl md:text-2xl mb-6 text-gray-700">
-                    Or shoot me a message ✉️
+                    Or send me a message
                 </p>
 
                 <form
