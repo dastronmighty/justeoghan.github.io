@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /private/   # Add any specific directories you don't want indexed
+Sitemap: https://eoghanhogan.ie/sitemap.xml
