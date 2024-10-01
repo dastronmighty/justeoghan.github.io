@@ -11,9 +11,8 @@ const AboutMe: React.FC = () => {
                 </h2>
                 <div className="relative text-lg leading-8 text-gray-700 max-w-6xl mx-auto p-6 bg-white backdrop-blur-md rounded-xl shadow-xl">
                     <p>
-                        Hello! <br />
-                        I'm Eoghan, a self-taught programmer turned Bs.c in Computer Science with a focus on Data Science. I became interested in AI for Minecraft, which eventually grew into a career. <br />
-                        I'm passionate about creating a better world with the power of Machine Learning.
+                        Hi 👋 <br /> I'm Eoghan, a self-taught programmer turned B.Sc. in Computer Science, with a focus on Data Science. My journey into AI began with modding Minecraft—creating new mobs and mods really sparked my curiosity, and what started as a hobby soon grew into a career.
+                        I'm particularly fascinated by Self-Play and Reinforcement Learning, and I’m passionate about leveraging Machine Learning to create meaningful change. I strongly believe in the power of open-source software and ensuring free access to knowledge for everyone, with the goal of building a better world through technology.
                     </p>
                 </div>
             </div>
