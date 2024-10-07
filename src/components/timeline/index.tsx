@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { timelineData } from "./data";
+import MarkdownWrapper from "../mkdWrapper";
 
 const Timeline: React.FC = () => {
+    const [contentData, setContentData] = useState<{ [key: string]: string }>({});
+
+    // Function to get the icon along with width and height properties
     const getIcon = (type: number) => {
-        if (type === 1) return "/icons/apple.svg"; // For all Apple related positions
-        if (type === 2) return "/icons/work.svg"; // For internship positions
-        if (type === 3) return "/icons/college.svg"; // For education
-        return "/icons/pencilruler.svg";; // For early or undefined work (e.g. before formal education)
+        switch (type) {
+            case 1:
+                return { src: "/icons/apple.svg", width: 30, height: 30 }; // Apple related positions
+            case 2:
+                return { src: "/icons/work.svg", width: 30, height: 30 }; // Internship positions
+            case 3:
+                return { src: "/icons/college.svg", width: 50, height: 50 }; // Education
+            default:
+                return { src: "/icons/pencilruler.svg", width: 25, height: 25 }; // Early or undefined work
+        }
     };
+
+    // Function to fetch the content file
+    const fetchContent = (contentFile: string, index: number) => {
+        fetch(contentFile)
+            .then((response) => response.text())
+            .then((text) => {
+                setContentData((prevContentData) => ({
+                    ...prevContentData,
+                    [index]: text, // Store content based on index
+                }));
+            })
+            .catch((error) => console.error(`Error fetching ${contentFile}: `, error));
+    };
+
+    // Fetch content for all timeline items
+    useEffect(() => {
+        timelineData.forEach((item, index) => {
+            if (item.contentFile) {
+                fetchContent(item.contentFile, index);
+            }
+        });
+    }, []);
 
     return (
         <section id="timeline" className="py-20">
@@ -23,11 +55,18 @@ const Timeline: React.FC = () => {
                             className="timeline-item backdrop-blur-md backdrop-brightness-150 bg-white rounded-lg p-6 mb-6 shadow-xl"
                         >
                             <div className="flex items-center justify-between mb-2">
-                                {/* Replace emoji with icons */}
-                                <img src={getIcon(item.iconType)} alt="icon" className="w-8 h-8" />
+                                {/* Adjust width and height for each icon */}
+                                <img
+                                    src={getIcon(item.iconType).src}
+                                    alt="icon"
+                                    className="w-auto h-auto"
+                                    style={{ width: getIcon(item.iconType).width, height: getIcon(item.iconType).height }}
+                                />
                                 <h3 className="text-xl font-semibold text-right text-blue-900">{item.year}</h3>
                             </div>
-                            <p className="text-gray-800">{item.content}</p>
+                            <div className="text-gray-800">
+                                <MarkdownWrapper content={contentData[index] || 'Loading content...'} />
+                            </div>
                         </div>
                     ))}
                 </div>

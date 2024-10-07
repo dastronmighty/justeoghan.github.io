@@ -65,6 +65,7 @@ if __name__ == "__main__":
         ".git",
         "build",
         "icons",
+        "public",
     ]
 
     # List of specific files to ignore
