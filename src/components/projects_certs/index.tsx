@@ -24,6 +24,7 @@ const ProjectsAndCourses: React.FC = () => {
                 breakpoint: 768, // Mobile view
                 settings: {
                     slidesToShow: 1,
+                    slidesToScroll: 1,
                     dots: true, // Show dots on mobile
                     arrows: false, // Hide arrows on mobile
                 },
@@ -32,6 +33,7 @@ const ProjectsAndCourses: React.FC = () => {
                 breakpoint: 640, // Smaller mobile view
                 settings: {
                     slidesToShow: 1,
+                    slidesToScroll: 1,
                     dots: true, // Ensure dots are shown
                     arrows: false, // Hide arrows on mobile
                 },

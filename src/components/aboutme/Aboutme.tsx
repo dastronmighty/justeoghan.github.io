@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MarkdownWrapper from '../mkdWrapper';
+import { Link } from 'react-router-dom';
 
 const AboutMe: React.FC = () => {
     const [content, setContent] = useState<string>('');
@@ -20,6 +21,11 @@ const AboutMe: React.FC = () => {
                 <div className="relative text-lg leading-8 text-gray-700 max-w-6xl mx-auto p-6 bg-white backdrop-blur-md rounded-xl shadow-xl">
                     <MarkdownWrapper content={content} />
                 </div>
+            </div>
+            <div className="container mx-auto px-4 text-center py-8">
+                <Link to="/blog" className="inline-block bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">
+                    Visit the Blog
+                </Link>
             </div>
         </section>
     );

@@ -11,7 +11,7 @@ const BlogList: React.FC = () => {
             <Helmet>
                 <title>Blog - Eoghan Hogan</title>
                 <meta name="description" content="Read insightful articles and blog posts by Eoghan Hogan about tech, projects, and more." />
-                <link rel="canonical" href="https://eoghanhogan.ie/blog" />
+                <link rel="canonical" href="https://eoghanhogan.ie/#/blog" />
             </Helmet>
             <section className="py-20">
                 <div className="container mx-auto px-4 mb-4">

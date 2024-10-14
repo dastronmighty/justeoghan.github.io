@@ -32,7 +32,7 @@ const BlogPost: React.FC = () => {
             <Helmet>
                 <title>{blog.title} - Eoghan Hogan Blog</title>
                 <meta name="description" content={blog.description} />
-                <link rel="canonical" href={`https://eoghanhogan.ie/blog/${blog.id}`} />
+                <link rel="canonical" href={`https://eoghanhogan.ie/#/blog/${blog.slug}`} />
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
@@ -43,7 +43,7 @@ const BlogPost: React.FC = () => {
                             "@type": "Person",
                             "name": "Eoghan Hogan",
                         },
-                        "url": `https://eoghanhogan.ie/blog/${blog?.id}`,
+                        "url": `https://eoghanhogan.ie/#/blog/${blog?.slug}`, // Update this URL as well
                         "datePublished": blog?.datePublished,
                     })}
                 </script>
