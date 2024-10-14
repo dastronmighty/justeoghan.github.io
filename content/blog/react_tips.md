@@ -1,0 +1,3 @@
+# React Tips and Tricks
+
+Here are some cool React tips and tricks you can use...
