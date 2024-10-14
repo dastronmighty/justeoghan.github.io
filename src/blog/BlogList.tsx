@@ -1,5 +1,6 @@
 // src/blog/BlogList.tsx
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { blogData } from './blogData';
 import Footer from '../components/footer';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,11 @@ import { Link } from 'react-router-dom';
 const BlogList: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen">
+            <Helmet>
+                <title>Blog - Eoghan Hogan</title>
+                <meta name="description" content="Read insightful articles and blog posts by Eoghan Hogan about tech, projects, and more." />
+                <link rel="canonical" href="https://eoghanhogan.ie/blog" />
+            </Helmet>
             <section className="py-20">
                 <div className="container mx-auto px-4 mb-4">
                     <Link to="/" className="text-blue-500 hover:underline">
@@ -23,7 +29,7 @@ const BlogList: React.FC = () => {
                             <div key={blog.id} className="bg-white p-6 rounded-lg shadow-md">
                                 <h3 className="text-2xl font-bold mb-2">{blog.title}</h3>
                                 <p className="text-gray-700 mb-4">{blog.description}</p>
-                                <Link to={`/blog/${blog.id}`} className="text-blue-500 hover:underline">
+                                <Link to={`/blog/${blog.slug}`} className="text-blue-500 hover:underline">
                                     Read more
                                 </Link>
                             </div>
