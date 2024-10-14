@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
                         aria-label="GitHub"
                         className="hover:opacity-75 transition duration-300"
                     >
-                        <img src="icons/github-mark-white.svg" alt="GitHub" className="w-8 h-8" />
+                        <img src="/icons/github-mark-white.svg" alt="GitHub" className="w-8 h-8" />
                     </a>
 
                     {/* LinkedIn Link */}
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                         aria-label="LinkedIn"
                         className="hover:opacity-75 transition duration-300"
                     >
-                        <img src="icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
+                        <img src="/icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
                     </a>
 
                 </div>

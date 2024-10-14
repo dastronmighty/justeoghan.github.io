@@ -195,20 +195,32 @@ Directory: justeoghan.github.io
   Directory: src
     File: index.tsx
       Contents:
+        // src/index.tsx
         import React from 'react';
         import ReactDOM from 'react-dom/client';
+        import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
         import './index.css';
         import App from './App';
+        import BlogList from './blog/BlogList';
+        import BlogPost from './blog/BlogPost';
         import reportWebVitals from './reportWebVitals';
         
         const root = ReactDOM.createRoot(
           document.getElementById('root') as HTMLElement
         );
+        
         root.render(
           <React.StrictMode>
-            <App />
+            <Router>
+              <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/blog" element={<BlogList />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
+              </Routes>
+            </Router>
           </React.StrictMode>
         );
+        
         
         // If you want to start measuring performance in your app, pass a function
         // to log results (for example: reportWebVitals(console.log))
@@ -226,13 +238,19 @@ Directory: justeoghan.github.io
         import Projects from './components/projects_certs';
         import Achievements from './components/achievements';
         
+        import { Link } from 'react-router-dom';
+        
         const App: React.FC = () => {
           return (
             <div className="App" style={{
               backgroundColor: "rgb(243 244 246)"
             }}>
               <HeroSection />
-        
+              <div className="container mx-auto px-4 text-center py-8">
+                <Link to="/blog" className="inline-block bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">
+                  Visit the Blog
+                </Link>
+              </div>
               <AboutMe />
         
               <Achievements />
@@ -330,6 +348,139 @@ Directory: justeoghan.github.io
     File: react-app-env.d.ts
       Contents:
         /// <reference types="react-scripts" />
+    Directory: blog
+      File: blogData.ts
+        Contents:
+          // src/blog/blogData.ts
+          export const blogData = [
+              {
+                  id: 1,
+                  title: "My First Blog Post",
+                  description: "This is the description for my first blog post.",
+                  contentFile: "/content/blog/first_blog.md",
+              },
+              {
+                  id: 2,
+                  title: "React Tips and Tricks",
+                  description: "Learn some cool React tips and tricks.",
+                  contentFile: "/content/blog/react_tips.md",
+              },
+              {
+                  id: 3,
+                  title: "Test Blog",
+                  description: "Learn some cool React tips and tricks.",
+                  contentFile: "/content/blog/test_blog.md",
+              },
+          ];
+      File: BlogList.tsx
+        Contents:
+          // src/blog/BlogList.tsx
+          import React from 'react';
+          import { blogData } from './blogData';
+          import Footer from '../components/footer';
+          import { Link } from 'react-router-dom';
+          
+          const BlogList: React.FC = () => {
+              return (
+                  <div className="flex flex-col min-h-screen">
+                      <section className="py-20">
+                          <div className="container mx-auto px-4 mb-4">
+                              <Link to="/" className="text-blue-500 hover:underline">
+                                  &larr; Back to home
+                              </Link>
+                          </div>
+                          <div className="container mx-auto px-4">
+                              <h2 className="relative text-4xl font-bold text-center mb-8">
+                                  Blog
+                                  <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] w-48 h-1 bg-blue-400 rotate-2"></span>
+                              </h2>
+                              <div className="grid gap-8">
+                                  {blogData.map((blog) => (
+                                      <div key={blog.id} className="bg-white p-6 rounded-lg shadow-md">
+                                          <h3 className="text-2xl font-bold mb-2">{blog.title}</h3>
+                                          <p className="text-gray-700 mb-4">{blog.description}</p>
+                                          <Link to={`/blog/${blog.id}`} className="text-blue-500 hover:underline">
+                                              Read more
+                                          </Link>
+                                      </div>
+                                  ))}
+                              </div>
+                          </div>
+                      </section>
+                      <Footer />
+                  </div>
+              );
+          };
+          
+          export default BlogList;
+      File: BlogPost.tsx
+        Contents:
+          // src/blog/BlogPost.tsx
+          import React, { useEffect, useState } from 'react';
+          import { useParams } from 'react-router-dom';
+          import { blogData } from './blogData';
+          import Footer from '../components/footer';
+          import MarkdownWrapper from '../components/mkdWrapper';
+          import { Link } from 'react-router-dom';
+          
+          const BlogPost: React.FC = () => {
+              const { id } = useParams<{ id: string }>();
+              const blog = blogData.find((b) => b.id === parseInt(id ?? '0'));
+              const [content, setContent] = useState<string>('');
+              const nextBlog = blog ? blogData.find((b) => b.id === blog.id + 1) : undefined;
+              const previousBlog = blog ? blogData.find((b) => b.id === blog.id - 1) : undefined;
+          
+          
+              useEffect(() => {
+                  if (blog) {
+                      fetch(blog.contentFile)
+                          .then((response) => response.text())
+                          .then((text) => setContent(text))
+                          .catch((error) => console.error(`Error fetching blog content: `, error));
+                  }
+              }, [blog]);
+          
+              if (!blog) {
+                  return <p>Blog post not found.</p>;
+              }
+          
+              return (
+                  <div className="flex flex-col min-h-screen">
+                      <section className="py-20">
+                          <div className="container mx-auto px-4 mb-4">
+                              <Link to="/blog" className="text-blue-500 hover:underline">
+                                  &larr; Back to blogs
+                              </Link>
+                          </div>
+                          <div className="container mx-auto px-4">
+                              <h1 className="relative text-4xl font-bold mb-8 inline-block">
+                                  {blog.title}
+                                  <span className="absolute left-0 right-0 transform bottom-[-10px] w-full h-1 bg-blue-400 rotate-2"></span>
+                              </h1>
+                              <div className="bg-white shadow-lg rounded-lg p-6">
+                                  <MarkdownWrapper content={content || 'Loading...'} />
+                              </div>
+                          </div>
+                          <div className="container mx-auto px-4 text-center mt-8">
+                              {previousBlog && (
+                                  <Link to={`/blog/${previousBlog.id}`} className="text-blue-500 hover:underline mr-8">
+                                      &larr; Previous Blog: {previousBlog.title}
+                                  </Link>
+                              )}
+                              {nextBlog && (
+                                  <Link to={`/blog/${nextBlog.id}`} className="text-blue-500 hover:underline">
+                                      Next Blog: {nextBlog.title} &rarr;
+                                  </Link>
+                              )}
+                          </div>
+          
+                      </section >
+                      <Footer />
+                  </div>
+              );
+          };
+          
+          export default BlogPost;
     Directory: components
       Directory: footer
         File: index.tsx
@@ -347,7 +498,7 @@ Directory: justeoghan.github.io
                                     aria-label="GitHub"
                                     className="hover:opacity-75 transition duration-300"
                                 >
-                                    <img src="icons/github-mark-white.svg" alt="GitHub" className="w-8 h-8" />
+                                    <img src="/icons/github-mark-white.svg" alt="GitHub" className="w-8 h-8" />
                                 </a>
             
                                 {/* LinkedIn Link */}
@@ -356,7 +507,7 @@ Directory: justeoghan.github.io
                                     aria-label="LinkedIn"
                                     className="hover:opacity-75 transition duration-300"
                                 >
-                                    <img src="icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
+                                    <img src="/icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
                                 </a>
             
                             </div>
@@ -811,12 +962,53 @@ Directory: justeoghan.github.io
                     icon: "/icons/features-alt.svg",
                 }
             ];
+      Directory: mkdWrapper
+        File: index.tsx
+          Contents:
+            import React from 'react';
+            import ReactMarkdown from 'react-markdown';
+            import remarkGfm from 'remark-gfm';
+            
+            
+            const MarkdownWrapper: React.FC<{ content: string }> = ({ content }) => {
+                return (
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                            h1: ({ children }) => <h1 className="text-4xl font-bold mb-4">{children}</h1>,
+                            h2: ({ children }) => <h2 className="text-3xl font-semibold mb-3">{children}</h2>,
+                            h3: ({ children }) => <h3 className="text-2xl font-medium mb-2">{children}</h3>,
+                            p: ({ children }) => <p className="text-lg leading-relaxed mb-4">{children}</p>,
+                            ul: ({ children }) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
+                            ol: ({ children }) => <ol className="list-decimal pl-5 mb-4">{children}</ol>,
+                            a: ({ href, children }) => (
+                                <a href={href} className="text-blue-500 hover:underline">
+                                    {children}
+                                </a>
+                            ),
+                        }}
+                    >
+                        {content}
+                    </ReactMarkdown>
+                );
+            };
+            
+            export default MarkdownWrapper;
       Directory: aboutme
         File: Aboutme.tsx
           Contents:
-            import React from 'react';
+            import React, { useEffect, useState } from 'react';
+            import MarkdownWrapper from '../mkdWrapper';
             
             const AboutMe: React.FC = () => {
+                const [content, setContent] = useState<string>('');
+            
+                useEffect(() => {
+                    fetch('/content/aboutme.md')
+                        .then((response) => response.text())
+                        .then((text) => setContent(text));
+                }, []);
+            
                 return (
                     <section id="about" className="py-20">
                         <div className="container mx-auto px-4">
@@ -825,12 +1017,7 @@ Directory: justeoghan.github.io
                                 <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-10px] w-48 h-1 bg-blue-400 rotate-2"></span>
                             </h2>
                             <div className="relative text-lg leading-8 text-gray-700 max-w-6xl mx-auto p-6 bg-white backdrop-blur-md rounded-xl shadow-xl">
-                                <p>
-                                    Hi 👋 <br /> I'm Eoghan, a Bachelor of Science in Computer Science with a focus on Data Science from University College Dublin. My journey into AI began with modding Minecraft—creating new mobs and mods ignited my curiosity, turning what started as a hobby into a fulfilling career.
-                                </p>
-                                <p className="mt-4">
-                                    I'm particularly fascinated by Reinforcement Learning, and I'm passionate about leveraging machine learning to drive meaningful change. I strongly believe in the power of open-source software and the importance of providing free access to knowledge for everyone.
-                                </p>
+                                <MarkdownWrapper content={content} />
                             </div>
                         </div>
                     </section>
@@ -1161,16 +1348,48 @@ Directory: justeoghan.github.io
       Directory: timeline
         File: index.tsx
           Contents:
-            import React from "react";
+            import React, { useState, useEffect } from "react";
             import { timelineData } from "./data";
+            import MarkdownWrapper from "../mkdWrapper";
             
             const Timeline: React.FC = () => {
+                const [contentData, setContentData] = useState<{ [key: string]: string }>({});
+            
+                // Function to get the icon along with width and height properties
                 const getIcon = (type: number) => {
-                    if (type === 1) return "/icons/apple.svg"; // For all Apple related positions
-                    if (type === 2) return "/icons/work.svg"; // For internship positions
-                    if (type === 3) return "/icons/college.svg"; // For education
-                    return "/icons/pencilruler.svg";; // For early or undefined work (e.g. before formal education)
+                    switch (type) {
+                        case 1:
+                            return { src: "/icons/apple.svg", width: 30, height: 30 }; // Apple related positions
+                        case 2:
+                            return { src: "/icons/work.svg", width: 30, height: 30 }; // Internship positions
+                        case 3:
+                            return { src: "/icons/college.svg", width: 50, height: 50 }; // Education
+                        default:
+                            return { src: "/icons/pencilruler.svg", width: 25, height: 25 }; // Early or undefined work
+                    }
                 };
+            
+                // Function to fetch the content file
+                const fetchContent = (contentFile: string, index: number) => {
+                    fetch(contentFile)
+                        .then((response) => response.text())
+                        .then((text) => {
+                            setContentData((prevContentData) => ({
+                                ...prevContentData,
+                                [index]: text, // Store content based on index
+                            }));
+                        })
+                        .catch((error) => console.error(`Error fetching ${contentFile}: `, error));
+                };
+            
+                // Fetch content for all timeline items
+                useEffect(() => {
+                    timelineData.forEach((item, index) => {
+                        if (item.contentFile) {
+                            fetchContent(item.contentFile, index);
+                        }
+                    });
+                }, []);
             
                 return (
                     <section id="timeline" className="py-20">
@@ -1186,11 +1405,18 @@ Directory: justeoghan.github.io
                                         className="timeline-item backdrop-blur-md backdrop-brightness-150 bg-white rounded-lg p-6 mb-6 shadow-xl"
                                     >
                                         <div className="flex items-center justify-between mb-2">
-                                            {/* Replace emoji with icons */}
-                                            <img src={getIcon(item.iconType)} alt="icon" className="w-8 h-8" />
+                                            {/* Adjust width and height for each icon */}
+                                            <img
+                                                src={getIcon(item.iconType).src}
+                                                alt="icon"
+                                                className="w-auto h-auto"
+                                                style={{ width: getIcon(item.iconType).width, height: getIcon(item.iconType).height }}
+                                            />
                                             <h3 className="text-xl font-semibold text-right text-blue-900">{item.year}</h3>
                                         </div>
-                                        <p className="text-gray-800">{item.content}</p>
+                                        <div className="text-gray-800">
+                                            <MarkdownWrapper content={contentData[index] || 'Loading content...'} />
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -1206,52 +1432,37 @@ Directory: justeoghan.github.io
                 {
                     year: 'Nov 2023 - Present',
                     iconType: 1,
-                    content: '- Machine Learning Engineer at Apple IST Conversational Engineering. Developed full stack data generation app and built an evaluation harness for testing large language models.',
+                    contentFile: '/content/timeline/apple_nov_23_pres.md',
                 },
                 {
                     year: 'Apr 2023 - Nov 2023',
                     iconType: 1,
-                    content: 'Full Stack Engineer at Apple Collaboration and Productivity team. Implemented real-time sharable notes in internal collaboration tool using PHP and YJS.',
+                    contentFile: '/content/timeline/chorus.md',
                 },
                 {
-                    year: 'Oct 2022 - Apr 2023',
+                    year: 'Sep 2021 - Apr 2023',
                     iconType: 1,
-                    content: 'Technical Program Manager at Apple IST Customer Systems Team. Led ML project for Apple Care eMail, working with stakeholders and providing regular updates.',
-                },
-                {
-                    year: 'Mar 2022 - Oct 2022',
-                    iconType: 1,
-                    content: 'Data Scientist + Web Developer at Apple GBI Team. Created a web tool for time-series peak-trough detection and sequence identification.',
-                },
-                {
-                    year: 'Sep 2021 - Mar 2022',
-                    iconType: 1,
-                    content: 'Support Data Scientist at Apple IST SAP team. Developed an anomaly detection pipeline for invoice prediction.',
+                    contentFile: '/content/timeline/apple_sep_21_apr_23.md',
                 },
                 {
                     year: '2017 - 2021',
                     iconType: 3,
-                    content: 'Bachelor of Science in Computer Science with Data Science, University College Dublin. First Class Honours, awarded Franz Geiselbrechtinger Medal.',
+                    contentFile: '/content/timeline/college.md',
                 },
                 {
                     year: 'Mar 2020 - Sep 2020',
                     iconType: 1,
-                    content: 'ML Intern at Apple. Worked on multilingual sentiment analysis and named entity recognition systems.',
+                    contentFile: '/content/timeline/apple_intern.md',
                 },
                 {
                     year: 'Jun 2019 - Jul 2019',
                     iconType: 2,
-                    content: 'IT Intern at Bizintra Financial Academy. Working on new affiliate Portal. Left to pursue hobbies for the rest of the summer.',
+                    contentFile: '/content/timeline/bizintra.md',
             
                 },
                 {
                     year: 'Jun 2018 - Aug 2018',
                     iconType: 2,
-                    content: 'Tech Intern at CarTrawler. Built customer satisfaction web app and debugging tool for cab-hailing app using React and Google Maps apis.',
-                },
-                {
-                    year: '2013 - 2017',
-                    iconType: 4,
-                    content: 'Experimenting with programming occasionally. Java Calculators. Minecraft Mods. Javscript basics for websites. Etc...',
+                    contentFile: '/content/timeline/cartrawler.md',
                 }
             ];
